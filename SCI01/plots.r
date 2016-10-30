@@ -17,6 +17,7 @@ plot <-ggplot(airdata, aes(did_search, sent_message)) + geom_point(color="green"
 fname <- paste(OUTPUT_PATH, "correlation_search_vs_message", ".", EXTENSION, sep="")
 ggsave(filename=fname, plot=plot, device = "jpeg")
 
+<<<<<<< HEAD
 # This plot calculates the frequency of session lengths in histogram.
 t_start = as.numeric(as.POSIXct(airdata$ts_min, format='%Y-%m-%d %H:%M:%S'))
 t_stop = as.numeric(as.POSIXct(airdata$ts_max, format='%Y-%m-%d %H:%M:%S'))
@@ -24,3 +25,7 @@ session_lengths = as.integer((t_stop - t_start)/60)
 plot <- ggplot() + aes(session_lengths) + geom_histogram(binwidth = 50, colour="black", fill="red")
 fname <- paste(OUTPUT_PATH, "session_frequency", ".", EXTENSION, sep="")
 ggsave(filename=fname, plot=plot, device = "jpeg")
+=======
+
+
+>>>>>>> 3740225d51c17c4503452e0d7a145cdab7876767
