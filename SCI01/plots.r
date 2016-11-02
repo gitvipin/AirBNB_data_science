@@ -20,7 +20,23 @@ ggsave(filename=fname, plot=plot, device = "jpeg")
 # This plot calculates the frequency of session lengths in histogram.
 t_start = as.numeric(as.POSIXct(airdata$ts_min, format='%Y-%m-%d %H:%M:%S'))
 t_stop = as.numeric(as.POSIXct(airdata$ts_max, format='%Y-%m-%d %H:%M:%S'))
-session_lengths = as.integer((t_stop - t_start)/60)
-plot <- ggplot() + aes(session_lengths) + geom_histogram(binwidth = 50, colour="black", fill="red")
+airdata$session_lengths = as.integer((t_stop - t_start)/60)
+plot <- ggplot() + aes(airdata$session_lengths) + geom_histogram(binwidth = 50, colour="black", fill="red")
 fname <- paste(OUTPUT_PATH, "session_frequency", ".", EXTENSION, sep="")
 ggsave(filename=fname, plot=plot, device = "jpeg")
+
+plot <- qplot(airdata$dim_session_number, airdata$session_lengths) +
+  labs(title="Airbnb user session order and duration(May 2014 to April 2015)",
+       x="Session number", y= "Session duration(minutes)", colour = "Cylinders") +
+  ylim(0,500) + xlim(0, 700)
+fname <- paste(OUTPUT_PATH, "plot1", ".", EXTENSION, sep="")
+ggsave(filename=fname, plot=plot, device = "jpeg")
+
+plot <- ggplot(airdata, aes(airdata$dim_session_number, airdata$session_lengths)) +
+  geom_point() +
+  scale_x_continuous(name="Session number", limits=c(0, 800), breaks=seq(0,800, 100)) +
+  scale_y_continuous(name="Session duration(minutes)", limits=c(0, 500), breaks=seq(0, 500, 100)) +
+  scale_colour_manual(values=c("red", "blue"))
+fname <- paste(OUTPUT_PATH, "plot2", ".", EXTENSION, sep="")
+ggsave(filename=fname, plot=plot, device = "jpeg")
+  
