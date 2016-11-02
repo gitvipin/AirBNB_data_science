@@ -32,11 +32,10 @@ plot <- qplot(airdata$dim_session_number, airdata$session_lengths) +
 fname <- paste(OUTPUT_PATH, "plot1", ".", EXTENSION, sep="")
 ggsave(filename=fname, plot=plot, device = "jpeg")
 
-plot <- ggplot(airdata, aes(airdata$dim_session_number, airdata$session_lengths)) +
+plot <- ggplot(airdata, aes(dim_session_number, session_lengths, color=sent_message)) +
   geom_point() +
   scale_x_continuous(name="Session number", limits=c(0, 800), breaks=seq(0,800, 100)) +
-  scale_y_continuous(name="Session duration(minutes)", limits=c(0, 500), breaks=seq(0, 500, 100)) +
-  scale_colour_manual(values=c("red", "blue"))
+  scale_y_continuous(name="Session duration(minutes)", limits=c(0, 500), breaks=seq(0, 500, 100))
 fname <- paste(OUTPUT_PATH, "plot2", ".", EXTENSION, sep="")
 ggsave(filename=fname, plot=plot, device = "jpeg")
   
