@@ -1,3 +1,5 @@
+# author : Tina Dai
+
 ##Open any data source
 data = read.table(file.choose(), sep = "|", header = TRUE, na.strings = c("", "NA"))
 

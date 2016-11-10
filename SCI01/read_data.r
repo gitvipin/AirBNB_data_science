@@ -1,4 +1,7 @@
 #!/usr/bin/env Rscript
+
+# author : Vipin Sharma
+
 library(ggplot2)
 airdata = read.table("./data/airbnb.txt", sep="|", header = TRUE, na.strings = c("", "NA"))
 

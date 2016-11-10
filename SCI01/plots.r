@@ -1,5 +1,6 @@
 #!/usr/bin/env Rscript
 
+# author : Vipin Sharma
 source ("read_data.R")
 # Collection of all plots for the data. 
 
