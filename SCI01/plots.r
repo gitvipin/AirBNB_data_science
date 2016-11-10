@@ -54,5 +54,22 @@ plot <- ggplot(airdata, aes(airdata$day, as.numeric(airdata$session_lengths))) +
 fname <- paste(OUTPUT_PATH, "day_vs_session_length", ".", EXTENSION, sep="")
 ggsave(filename=fname, plot=plot, device = "jpeg")
 
-
 ggplot(airdata, aes(airdata$month, airdata$session_lengths)) +geom_point(color="yellow4")
+
+
+users = read.table("./data/users.txt", sep="|", header = TRUE, na.strings = c("", "NA"))
+
+plot <- ggplot(users, aes(bookings, searches)) + geom_point(color="coral3") + 
+  ggtitle("User Behavior: Number of Bookings Vs. Number of Searches")
+fname <- paste(OUTPUT_PATH, "bookings_vs_searches", ".", EXTENSION, sep="")
+ggsave(filename=fname, plot=plot, device = "jpeg")
+
+plot <- ggplot(users, aes(bookings, messages)) + geom_point(color="coral3") +
+  ggtitle("User Behavior: Number of Bookings Vs. Number of Messages Exchanged")
+fname <- paste(OUTPUT_PATH, "bookings_vs_messages", ".", EXTENSION, sep="")
+ggsave(filename=fname, plot=plot, device = "jpeg")
+
+
+
+
+
